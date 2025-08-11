@@ -1,6 +1,17 @@
 # Manual Deployment Trigger
 
-If the automatic workflows aren't working, you can manually trigger the deployment using GitHub's web interface:
+⚠️ **Important**: Do NOT use `npm run deploy` as it creates a conflicting `gh-pages` branch. 
+Use the GitHub Actions workflows instead.
+
+## Automated Deployment (Recommended)
+
+Simply push to main branch - the automated workflows handle everything:
+
+```bash
+git add .
+git commit -m "Your changes"
+git push origin main
+```
 
 ## Method 1: Manual Workflow Trigger
 
