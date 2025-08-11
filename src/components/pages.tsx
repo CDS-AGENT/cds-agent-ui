@@ -418,6 +418,7 @@ function PatientDetailView({ patient, onBack }: {
   })
   const [uploadedImages, setUploadedImages] = useState<File[]>([])
   const [isExtracting, setIsExtracting] = useState(false)
+  const [isImageSectionExpanded, setIsImageSectionExpanded] = useState(false)
   const visits = generateMockVisits(patient.id)
 
   const handleShowModal = (type: 'notes' | 'report', content: string, title: string) => {
@@ -599,12 +600,21 @@ function PatientDetailView({ patient, onBack }: {
 
               {/* Image Upload and Text Extraction */}
               <div className="space-y-4 p-4 border rounded-lg bg-muted/20">
-                <div className="flex items-center gap-2">
+                <div 
+                  className="flex items-center gap-2 cursor-pointer hover:bg-muted/30 p-2 rounded transition-colors"
+                  onClick={() => setIsImageSectionExpanded(!isImageSectionExpanded)}
+                >
                   <Scan className="h-5 w-5 text-primary" />
-                  <h4 className="text-sm font-medium">Extract Text from Images</h4>
+                  <h4 className="text-sm font-medium flex-1">Extract Text from Images</h4>
+                  <ChevronDown 
+                    className={`h-4 w-4 text-muted-foreground transition-transform ${
+                      isImageSectionExpanded ? 'rotate-180' : ''
+                    }`} 
+                  />
                 </div>
                 
-                <div className="space-y-3">
+                {isImageSectionExpanded && (
+                  <div className="space-y-3 animate-in slide-in-from-top-2 duration-200">
                   {/* Upload Options */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div className="relative">
@@ -744,6 +754,7 @@ Extracted from uploaded images:
                     </div>
                   )}
                 </div>
+                )}
               </div>
 
               {/* Toggle Controls */}
