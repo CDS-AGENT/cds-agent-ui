@@ -144,7 +144,7 @@ export function Dashboard({ onPageChange }: DashboardProps = {}) {
   const filteredDiagnosisData = diagnosisAreaData.filter((item) => {
     const date = new Date(item.date)
     const referenceDate = new Date()
-    let daysToSubtract = parseInt(timeRange)
+    const daysToSubtract = parseInt(timeRange)
     const startDate = new Date(referenceDate)
     startDate.setDate(startDate.getDate() - daysToSubtract)
     return date >= startDate
