@@ -2,7 +2,7 @@ name: Auto Deploy from Main
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch: # Allow manual trigger
 
 permissions:
@@ -12,34 +12,34 @@ permissions:
 jobs:
   auto-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Configure Git
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
-    - name: Switch to deploy branch
-      run: |
-        git fetch origin deploy:deploy || git checkout -b deploy
-        git checkout deploy
+      - name: Switch to deploy branch
+        run: |
+          git fetch origin deploy:deploy || git checkout -b deploy
+          git checkout deploy
 
-    - name: Merge main into deploy
-      run: |
-        git merge origin/main --no-edit || true
+      - name: Merge main into deploy
+        run: |
+          git merge origin/main --no-edit || true
 
-    - name: Push to deploy branch
-      run: |
-        git push origin deploy
+      - name: Push to deploy branch
+        run: |
+          git push origin deploy
 
-    - name: Create deployment notification
-      run: |
-        echo "✅ Main branch changes have been merged to deploy branch"
-        echo "🚀 Automatic deployment will trigger shortly"
-        echo "📱 Live URL: https://atom-1106.github.io/cds-agent-ui/"
+      - name: Create deployment notification
+        run: |
+          echo "✅ Main branch changes have been merged to deploy branch"
+          echo "🚀 Automatic deployment will trigger shortly"
+          echo "📱 Live URL: https://atom-1106.github.io/cds-agent-ui/"
