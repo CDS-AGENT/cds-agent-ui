@@ -223,5 +223,5 @@ export default tseslint.config([
     },
   },
 ]);
-```s
+```
 ````
