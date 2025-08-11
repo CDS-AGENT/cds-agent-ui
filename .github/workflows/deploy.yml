@@ -5,6 +5,10 @@ on:
     branches: [deploy]
   pull_request:
     branches: [deploy]
+  workflow_run:
+    workflows: ["Auto Deploy from Main"]
+    types: [completed]
+    branches: [deploy]
   workflow_dispatch: # Allow manual trigger
 
 permissions:
@@ -19,6 +23,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Only run if workflow_run was successful or if triggered by push/manual
+    if: |
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
 
     steps:
       - name: Checkout

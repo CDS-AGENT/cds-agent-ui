@@ -19,6 +19,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          # Use default token - if this doesn't trigger workflows, we'll need PAT
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git
