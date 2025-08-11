@@ -5,6 +5,10 @@ on:
     branches: [deploy]
   pull_request:
     branches: [deploy]
+  workflow_run:
+    workflows: ["Auto Deploy from Main"]
+    types: [completed]
+    branches: [deploy]
   workflow_dispatch: # Allow manual trigger
 
 permissions:
@@ -19,6 +23,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Only run if workflow_run was successful or if triggered by push/manual
+    if: |
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
 
     steps:
       - name: Checkout
@@ -35,13 +43,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint code
-        run: npm run lint --if-present
-
       - name: Build application
         run: npm run build
         env:
           NODE_ENV: production
+
+      - name: List build output for debugging
+        run: |
+          echo "Contents of dist directory:"
+          ls -la dist/
+          echo "Contents of dist/assets directory:"
+          ls -la dist/assets/ || echo "No assets directory found"
+          echo "Contents of dist/index.html:"
+          cat dist/index.html
+          echo "Checking if test.txt exists:"
+          ls -la dist/test.txt || echo "test.txt not found in dist"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

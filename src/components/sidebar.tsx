@@ -75,9 +75,9 @@ export function Sidebar({ collapsed, onToggle, currentPage, onPageChange }: Side
   }
 
   const isMenuExpanded = (menuId: string) => expandedMenus.includes(menuId)
-  const isCurrentPageInSubmenu = (item: any) => {
+  const isCurrentPageInSubmenu = (item: { subItems?: { id: string }[] }) => {
     if (!item.subItems) return false
-    return item.subItems.some((subItem: any) => subItem.id === currentPage)
+    return item.subItems.some((subItem: { id: string }) => subItem.id === currentPage)
   }
 
   return (

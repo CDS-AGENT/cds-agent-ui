@@ -6,6 +6,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch'
 import { Search, ChevronLeft, ChevronRight, User, Calendar, Phone, MapPin, Eye, UserPen, ArrowLeft, FileText, ClipboardList, ChevronDown, X, History, Activity, ClipboardPlus, Upload, Image, Camera, FileImage, Scan } from 'lucide-react'
 
+// Type definitions
+interface Patient {
+  id: string
+  name: string
+  age: number
+  gender: string
+  phone: string
+  email: string
+  address: string
+  lastVisit: string
+  condition: string
+  status: string
+}
+
 // Mock patient data
 const generateMockPatients = () => {
   const firstNames = ['John', 'Jane', 'Michael', 'Sarah', 'David', 'Emily', 'Robert', 'Lisa', 'William', 'Ashley', 'James', 'Amanda', 'Daniel', 'Jessica', 'Thomas', 'Michelle', 'Christopher', 'Jennifer', 'Matthew', 'Elizabeth']
@@ -99,7 +113,7 @@ export function ExistingPatientsPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(9) // Multiple of 3 for grid display
   const [isSearching, setIsSearching] = useState(false)
-  const [selectedPatient, setSelectedPatient] = useState<any>(null)
+  const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null)
 
   // Filter patients based on search term (patient ID or name)
   const filteredPatients = useMemo(() => {
@@ -386,7 +400,7 @@ export function ExistingPatientsPage() {
 
 // Patient Detail View Component
 function PatientDetailView({ patient, onBack }: {
-  patient: any,
+  patient: Patient,
   onBack: () => void
 }) {
   const [showModal, setShowModal] = useState(false)

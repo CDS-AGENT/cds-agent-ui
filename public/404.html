@@ -8,9 +8,14 @@
       name="description"
       content="MedCare - Clinician Dashboard for AI-powered diagnosis assistance" />
     <title>MedCare - Clinician Dashboard</title>
+    <script>
+      // GitHub Pages SPA redirect
+      // Store the current path and redirect to root
+      sessionStorage.setItem('redirectPath', window.location.pathname);
+      window.location.replace('./');
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

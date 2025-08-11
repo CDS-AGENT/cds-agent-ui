@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils"
 const ChartContainer = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
-    config: Record<string, any>
+    config: Record<string, unknown>
   }
->(({ className, config, ...props }, ref) => (
+>(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn("flex aspect-auto justify-center text-xs", className)}
@@ -24,9 +24,9 @@ const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
     indicator?: "dot" | "line"
-    labelFormatter?: (value: any) => string
+    labelFormatter?: (value: unknown) => string
   }
->(({ className, indicator = "dot", labelFormatter, ...props }, ref) => (
+>(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
@@ -38,7 +38,7 @@ const ChartTooltipContent = React.forwardRef<
 ))
 ChartTooltipContent.displayName = "ChartTooltipContent"
 
-const ChartLegend = ({ content, ...props }: any) => {
+const ChartLegend = ({ content, ...props }: { content?: React.ComponentType<unknown> }) => {
   return content ? React.createElement(content, props) : null
 }
 
