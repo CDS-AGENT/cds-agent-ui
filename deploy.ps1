@@ -87,7 +87,7 @@ try {
     git push origin deploy
 
     Write-Success "Deployment completed successfully!"
-    Write-Success "Live URL: https://atom-1106.github.io/cds-agent-ui/"
+    Write-Success "Live URL: https://CDS-AGENT.github.io/cds-agent-ui/"
 
     # Return to original branch
     git checkout $currentBranch
@@ -97,7 +97,7 @@ try {
     Write-Host "🎉 Deployment Summary:" -ForegroundColor Cyan
     Write-Host "   📦 Built from main branch"
     Write-Host "   🚀 Deployed to GitHub Pages"
-    Write-Host "   🌐 Live at: https://atom-1106.github.io/cds-agent-ui/"
+    Write-Host "   🌐 Live at: https://CDS-AGENT.github.io/cds-agent-ui/"
     Write-Host "   📋 Deploy branch updated"
     Write-Host ""
     

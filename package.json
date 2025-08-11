@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://atom-1106.github.io/cds-agent-ui",
+  "homepage": "https://CDS-AGENT.github.io/cds-agent-ui",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

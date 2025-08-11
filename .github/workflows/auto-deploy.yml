@@ -42,4 +42,4 @@ jobs:
         run: |
           echo "✅ Main branch changes have been merged to deploy branch"
           echo "🚀 Automatic deployment will trigger shortly"
-          echo "📱 Live URL: https://atom-1106.github.io/cds-agent-ui/"
+          echo "📱 Live URL: https://CDS-AGENT.github.io/cds-agent-ui/"

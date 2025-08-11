@@ -62,7 +62,7 @@ chmod +x deploy.sh
 ## 📋 Configuration
 
 - **Deploy Branch**: `deploy`
-- **Live URL**: `https://atom-1106.github.io/cds-agent-ui/`
+- **Live URL**: `https://CDS-AGENT.github.io/cds-agent-ui/`
 - **Source Branch**: `main` (development)
 - **Build Tool**: Vite + React + TypeScript
 - **Workflows**: Auto-deploy + GitHub Pages deployment
@@ -145,7 +145,7 @@ Ensure GitHub Actions can write to repository:
 
 ## 🔗 Quick Links
 
-- **Live App**: https://atom-1106.github.io/cds-agent-ui/
+- **Live App**: https://CDS-AGENT.github.io/cds-agent-ui/
 - **GitHub Actions**: Repository → Actions tab
 - **Pages Settings**: Repository → Settings → Pages
 
