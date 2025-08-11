@@ -7,16 +7,17 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
+  actions: write
 
 jobs:
   auto-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout main branch
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -25,18 +26,18 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-      - name: Switch to deploy branch
+      - name: Create or switch to deploy branch
         run: |
-          git fetch origin deploy:deploy || git checkout -b deploy
+          git fetch origin deploy:deploy 2>/dev/null || git checkout -b deploy
           git checkout deploy
 
-      - name: Merge main into deploy
+      - name: Reset deploy branch to main
         run: |
-          git merge origin/main --no-edit || true
+          git reset --hard origin/main
 
       - name: Push to deploy branch
         run: |
-          git push origin deploy
+          git push --force-with-lease origin deploy
 
       - name: Create deployment notification
         run: |
