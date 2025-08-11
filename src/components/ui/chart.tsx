@@ -15,7 +15,7 @@ const ChartContainer = React.forwardRef<
 ))
 ChartContainer.displayName = "ChartContainer"
 
-const ChartTooltip = ({ content, cursor, ...props }: any) => {
+const ChartTooltip = () => {
   // This is a simplified version - in a real app you'd use recharts tooltip
   return null
 }

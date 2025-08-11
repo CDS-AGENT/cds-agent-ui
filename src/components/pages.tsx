@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
-import { Search, ChevronLeft, ChevronRight, User, Calendar, Phone, MapPin, Eye, UserPen, ArrowLeft, FileText, ClipboardList, ChevronDown, X, Plus, Stethoscope, History, Activity, UserCheck, ClipboardPlus, Upload, Image, Camera, FileImage, Scan } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, User, Calendar, Phone, MapPin, Eye, UserPen, ArrowLeft, FileText, ClipboardList, ChevronDown, X, History, Activity, ClipboardPlus, Upload, Image, Camera, FileImage, Scan } from 'lucide-react'
 
 // Mock patient data
 const generateMockPatients = () => {
