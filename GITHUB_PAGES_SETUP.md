@@ -28,16 +28,39 @@ You can verify this in **Repository Settings → Environments** after the first 
 
 ## Workflow Overview
 
-### Current Active Workflow: `main-deploy.yml`
+### Dual-Branch Strategy (Proper Approach)
+
+**Why we use two branches:**
+
+- **main branch**: Development and source code
+- **deploy branch**: Production builds and GitHub Pages deployment
+- **Environment protection**: GitHub Pages rules only allow deployment from deploy branch
+
+### Active Workflows:
+
+#### 1. Auto-Deploy Workflow (`auto-deploy.yml`)
 
 - **Trigger**: Push to main branch
-- **Process**: Build → Upload artifact → Deploy to Pages
-- **Environment**: github-pages (required for Pages deployment)
+- **Purpose**: Automatically sync main → deploy branch
+- **Process**: Reset deploy branch to match main exactly
+- **Result**: Triggers the deploy workflow
 
-### Alternative Workflows (Available but not primary)
+#### 2. Deploy Workflow (`deploy.yml`)
 
-- `auto-deploy.yml`: Merges main to deploy branch
-- `deploy.yml`: Deploys from deploy branch
+- **Trigger**: Push to deploy branch (from auto-deploy)
+- **Purpose**: Build and deploy to GitHub Pages
+- **Process**: Install deps → Build → Upload → Deploy
+- **Environment**: github-pages (respects protection rules)
+
+### Deployment Flow:
+
+```
+Push to main → auto-deploy.yml → deploy branch → deploy.yml → GitHub Pages
+```
+
+### Disabled Workflows:
+
+- `main-deploy.yml.disabled`: Attempted direct deployment from main (blocked by protection rules)
 
 ## Troubleshooting
 
