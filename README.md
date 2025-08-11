@@ -224,3 +224,5 @@ export default tseslint.config([
   },
 ]);
 ```
+
+Sample Text
